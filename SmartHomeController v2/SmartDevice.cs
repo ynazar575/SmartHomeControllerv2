@@ -33,14 +33,26 @@ namespace SmartHomeController
             set { status = value; }
         }
 
-        public SmartDevice(int deviceID, string deviceName)
+        public SmartDevice(int deviceID, string deviceName, bool deviceStatus)
         {
             this.DeviceID = deviceID;
             this.DeviceName = deviceName;
-            this.Status = false; // default status for a new smart item
+            this.Status = deviceStatus; // default status for a new smart item
 
         }
-
-       
+        public void TurnOn()
+        {
+            Status = true;
+            Console.WriteLine($"{deviceName} with device ID{DeviceID} is now ON");
+        }
+        public void TurnOff()
+        {
+            Status = false;
+            Console.WriteLine($"{deviceName} with device ID{DeviceID} is now OFF");
+        }
+        public virtual void GetStatus()
+        {
+            Console.WriteLine($"Device ID: {deviceId}, Name: {deviceName}, status (on or off): {(status ? "ON" : "OFF")}");
+        }
     }
 }
